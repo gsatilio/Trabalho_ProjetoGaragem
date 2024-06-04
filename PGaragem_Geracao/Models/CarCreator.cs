@@ -12,13 +12,13 @@ namespace Models
 
         public static void GenerateCarJSONFile(int opt)
         {
-            List<Car> CarList = new List<Car>();
+            CarList carList = new CarList();
+            carList.Car = new List<Car>();
 
             for (int i = 0; i < 30; i++)
             {
                 int modYear = new Random().Next(1980, 2024);
-
-                CarList.Add(new Car
+                carList.Car.Add(new Car
                 {
                     LicensePlate = GenerateLicensePlate(),
                     Color = GenerateCarColorList().OrderBy(s => Guid.NewGuid()).First(),
@@ -30,15 +30,12 @@ namespace Models
 
             using (var writer = new StreamWriter(ConfigurationManager.ConnectionStrings["JSONFileOutput"].ConnectionString))
             {
-                foreach (var item in CarList)
-                {
-                    writer.WriteLine(JsonConvert.SerializeObject(item, Formatting.Indented));
-                }
+                writer.WriteLine(JsonConvert.SerializeObject(carList, Formatting.Indented));
                 writer.Close();
             }
 
             Console.WriteLine("\nCarros gerados com sucesso! Lista de carros:\n");
-            foreach (var item in CarList)
+            foreach (var item in carList.Car)
             {
                 Console.WriteLine(item);
             }

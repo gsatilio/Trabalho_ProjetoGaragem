@@ -15,6 +15,7 @@ namespace Models
         [JsonProperty("cor")]
         public string Color { get; set; }
 
+
         public override string ToString()
         {
             return $"Placa: {LicensePlate}, Nome: {Name}, Ano Modelo: {ModelYear}, Ano Fabricação: {FabricationYear}, Cor: {Color}";
