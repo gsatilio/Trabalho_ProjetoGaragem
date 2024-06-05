@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Xml.Linq;
 
 namespace Models
 {
@@ -15,7 +16,16 @@ namespace Models
         [JsonProperty("cor")]
         public string Color { get; set; }
 
-
+        public XElement? GetXMLDocument()
+        {
+            return new XElement("radar",
+                    new XElement("licensePlate", LicensePlate),
+                    new XElement("name", Name),
+                    new XElement("modelYear", ModelYear),
+                    new XElement("fabricationYear", FabricationYear),
+                    new XElement("color", Color)
+            );
+        }
         public override string ToString()
         {
             return $"Placa: {LicensePlate}, Nome: {Name}, Ano Modelo: {ModelYear}, Ano Fabricação: {FabricationYear}, Cor: {Color}";

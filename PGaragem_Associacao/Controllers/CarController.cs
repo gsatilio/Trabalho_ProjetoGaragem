@@ -24,5 +24,33 @@ namespace Controllers
             }
             return carList;
         }
+        public CarList RetrieveCarByColor(string color)
+        {
+            CarList carList = new CarList();
+            try
+            {
+                carList = _service.RetrieveCarByColor(color);
+            }
+            catch
+            {
+                throw;
+            }
+            return carList;
+        }
+
+        public CarList RetrieveCarByYear(int year1, int year2)
+        {
+            CarList carList = new CarList();
+            try
+            {
+                carList = _service.RetrieveCarByYear(year1, year2);
+            }
+            catch
+            {
+                throw;
+            }
+            return carList;
+        }
+
     }
 }

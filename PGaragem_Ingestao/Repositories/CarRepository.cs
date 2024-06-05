@@ -10,7 +10,7 @@ namespace Repositories
         private string Conn { get; set; }
         public CarRepository()
         {
-            Conn = ConfigurationManager.ConnectionStrings["ConexaoSQL"].ConnectionString;// new MsSQL().GetSQLString();
+            Conn = ConfigurationManager.ConnectionStrings["ConexaoSQL"].ConnectionString;
         }
         public bool InsertBatch(CarList carList)
         {
@@ -46,7 +46,7 @@ namespace Repositories
                 using (var db = new SqlConnection(Conn))
                 {
                     db.Open();
-                    db.Execute(" DELETE FROM TB_CAR ");
+                    db.Execute(" DELETE FROM TB_CARSERVICE; DELETE FROM TB_CAR ");
                     db.Close();
                     result = true;
                 }

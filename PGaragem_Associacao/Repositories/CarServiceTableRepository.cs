@@ -151,6 +151,39 @@ namespace Repositories
             return serv;
         }
 
+        public CarServiceTableList RetrieveCarServiceTableStatus(bool status)
+        {
+            CarServiceTableList csList = new CarServiceTableList();
+            csList.CarServiceTable = new List<CarServiceTable>();
+            int auxstatus = 0;
+            if (!status)
+                auxstatus = 1;
+            try
+            {
+                using (var db = new SqlConnection(Conn))
+                {
+                    db.Open();
+                    var tc = db.Query($" SELECT Id, LicensePlate, IdService, Status FROM TB_CARSERVICE WHERE Status = {auxstatus}");
+                    foreach (var item in tc)
+                    {
+                        csList.CarServiceTable.Add(new CarServiceTable
+                        {
+                            Id = item.Id,
+                            Status = item.Status,
+                            Car = RetrieveCar(item.LicensePlate),
+                            Service = RetrieveService(item.IdService)
+                        });
 
+                    }
+                    db.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                //throw;
+            }
+            return csList;
+        }
     }
 }

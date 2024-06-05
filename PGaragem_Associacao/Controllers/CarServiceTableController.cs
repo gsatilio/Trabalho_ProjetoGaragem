@@ -56,5 +56,19 @@ namespace Controllers
             }
             return csList;
         }
+
+        public CarServiceTableList RetrieveCarServiceTableStatus(bool status)
+        {
+            CarServiceTableList csList = new CarServiceTableList();
+            try
+            {
+                csList = _service.RetrieveCarServiceTableStatus(status);
+            }
+            catch
+            {
+                throw;
+            }
+            return csList;
+        }
     }
 }

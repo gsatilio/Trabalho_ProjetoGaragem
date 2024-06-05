@@ -55,5 +55,20 @@ namespace Services
             }
             return csList;
         }
+
+        public CarServiceTableList RetrieveCarServiceTableStatus(bool status)
+        {
+            CarServiceTableList csList = new CarServiceTableList();
+            try
+            {
+                csList = _repository.RetrieveCarServiceTableStatus(status);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
+            return csList;
+        }
     }
 }
