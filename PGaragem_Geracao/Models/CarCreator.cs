@@ -14,17 +14,18 @@ namespace Models
         {
             CarList carList = new CarList();
             carList.Car = new List<Car>();
-
-            for (int i = 0; i < 30; i++)
+            int quantityCar = GenerateCarNameList(opt).Count();
+            int quantityColor = GenerateCarColorList().Count();
+            for (int i = 0; i < quantityCar; i++)
             {
                 int modYear = new Random().Next(1980, 2024);
                 carList.Car.Add(new Car
                 {
                     LicensePlate = GenerateLicensePlate(),
-                    Color = GenerateCarColorList().OrderBy(s => Guid.NewGuid()).First(),
+                    Color = GenerateCarColorList()[new Random().Next(0, quantityColor)],
                     FabricationYear = modYear - 1,
                     ModelYear = modYear,
-                    Name = GenerateCarNameList(opt).OrderBy(s => Guid.NewGuid()).First()
+                    Name = GenerateCarNameList(opt)[new Random().Next(0, quantityCar)]
                 });
             }
 
@@ -47,7 +48,7 @@ namespace Models
             string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             string numbers = "0123456789";
             char[] result = new char[7];
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < format.Length; i++)
             {
                 switch (format[i])
                 {
@@ -147,7 +148,7 @@ namespace Models
             {"Vermelho",
             "Azul",
             "Preto",
-            "Vermelho",
+            "Cinza",
             "Branco",
             "Laranja"
             };
