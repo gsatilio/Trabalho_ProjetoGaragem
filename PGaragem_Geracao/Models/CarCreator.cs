@@ -14,18 +14,19 @@ namespace Models
         {
             CarList carList = new CarList();
             carList.Car = new List<Car>();
-            int quantityCar = GenerateCarNameList(opt).Count();
-            int quantityColor = GenerateCarColorList().Count();
-            for (int i = 0; i < quantityCar; i++)
+            var CarcolorList = GenerateCarColorList();
+            var CarNameList = GenerateCarNameList(opt);
+
+            for (int i = 0; i < CarNameList.Count; i++)
             {
                 int modYear = new Random().Next(1980, 2024);
                 carList.Car.Add(new Car
                 {
                     LicensePlate = GenerateLicensePlate(),
-                    Color = GenerateCarColorList()[new Random().Next(0, quantityColor)],
+                    Color = CarcolorList[new Random().Next(0, CarcolorList.Count)],
                     FabricationYear = modYear - 1,
                     ModelYear = modYear,
-                    Name = GenerateCarNameList(opt)[new Random().Next(0, quantityCar)]
+                    Name = CarNameList[new Random().Next(0, CarNameList.Count)]
                 });
             }
 
