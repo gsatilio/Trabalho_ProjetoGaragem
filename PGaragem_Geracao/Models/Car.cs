@@ -18,7 +18,7 @@ namespace Models
 
         public XElement? GetXMLDocument()
         {
-            return new XElement("radar",
+            return new XElement("car",
                     new XElement("licensePlate", LicensePlate),
                     new XElement("name", Name),
                     new XElement("modelYear", ModelYear),
