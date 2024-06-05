@@ -156,7 +156,7 @@ namespace Repositories
             CarServiceTableList csList = new CarServiceTableList();
             csList.CarServiceTable = new List<CarServiceTable>();
             int auxstatus = 0;
-            if (!status)
+            if (status)
                 auxstatus = 1;
             try
             {
